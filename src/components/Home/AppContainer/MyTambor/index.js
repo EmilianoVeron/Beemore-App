@@ -1,24 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card } from "react-bootstrap";
+import app from "../../../../firebase";
 
 function MyTambor(props) {
   return (
     <div className="mt-5">
-      <Card>
-        <table>
-          <tr>
-            <td>
-              <span>Fecha: </span>
-              {props.data.fecha}
-            </td>
-            <td>
-              <span>Cantidad de colmenas: </span>
-              {props.data.cantColmenas}
-            </td>
-            <td>{props.data.colmenasMuertas}</td>
-          </tr>
-        </table>
-      </Card>
+      <p>#{props.id}</p>
+      {props.data.Empresa ? (
+        <p>Empresa: {props.data.Empresa}</p>
+      ) : (
+        <p>Empresa: ---------</p>
+      )}
+      {props.data.responsableTecnicoSecondScreen ? (
+        <p>Responsable: {props.data.responsableTecnicoSecondScreen}</p>
+      ) : (
+        <p>Responsable: ---------</p>
+      )}
     </div>
   );
 }
