@@ -22,17 +22,21 @@ function AppContent() {
   }, []);
 
   return (
-    <div>
-      <Container>
+    <Container>
+      <div>
         <ul>
-          {data.map((item, index) => (
-            <li>
-              <MyTambor data={item} id={index}></MyTambor>
-            </li>
-          ))}
+          {data ? (
+            data.map((item, index) => (
+              <li style={{ listStyle: "none", marginLeft: "-100px" }}>
+                <MyTambor data={item} id={index}></MyTambor>
+              </li>
+            ))
+          ) : (
+            <li className="container"> loading...</li>
+          )}
         </ul>
-      </Container>
-    </div>
+      </div>
+    </Container>
   );
 }
 
