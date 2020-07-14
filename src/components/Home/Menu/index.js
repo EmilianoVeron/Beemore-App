@@ -24,9 +24,9 @@ function Menu() {
   }, []);
   return (
     <Router>
-      <div className="row app-container">
-        <div className="menu col-2 collapse  d-md-flex bg-light pt-5 ml-0  container">
-          <ul className=" nav flex-column flex-nowrap overflow-hidden ">
+      <div className="row app-container ">
+        <div className=" col-2 collapse  d-md-flex bg-light  ml-0  ">
+          <ul className="menu nav flex-column flex-nowrap overflow-hidden ">
             {currentUser.photoURL ? (
               <img className="userImage" src={currentUser.photoURL}></img>
             ) : (

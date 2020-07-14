@@ -1,6 +1,6 @@
 .menu {
+  width: 100%;
   background-color: #ebad55 !important;
-  height: 98.3vh;
   justify-content: center !important;
 
   -webkit-box-shadow: 7px 0px 20px -9px rgba(0, 0, 0, 0.75);
@@ -71,6 +71,8 @@
 }
 
 .app-container {
+  height: 100%;
+
   background: url("../../../img/bg-app.jpg");
   background-position: center;
   background-size: cover;

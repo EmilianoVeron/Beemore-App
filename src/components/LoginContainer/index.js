@@ -55,7 +55,7 @@ const LoginContainer = ({ history }) => {
   }
 
   return (
-    <div className="container-fluid App">
+    <div className="container-fluid my-App">
       <div className="container col-md-4 offset-md-4 login-container ">
         <BannerLogin></BannerLogin>
         <Logo></Logo>
@@ -63,7 +63,12 @@ const LoginContainer = ({ history }) => {
           <form onSubmit={handleLogin}>
             <div class="text-input">
               <label for="username">Email</label>
-              <input type="text" name="email" id="username" placeholder="" />
+              <input
+                type="text"
+                name="email"
+                id="username"
+                placeholder="Email"
+              />
               <span class="separator"> </span>
             </div>
 
@@ -86,7 +91,9 @@ const LoginContainer = ({ history }) => {
           </form>
           <div className="col-md-6 offset-md-2 ">
             <p style={{ textAlign: "center" }}>or</p>
-            <button onClick={handleLoginGoogle}>Sign in with google</button>
+            <button onClick={handleLoginGoogle} className="btn-google">
+              Sign in with google
+            </button>
           </div>
         </div>
       </div>

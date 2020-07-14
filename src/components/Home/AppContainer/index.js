@@ -7,9 +7,22 @@ import { AuthContext } from "../../../context/Auth";
 function AppContent() {
   const { currentUser } = useContext(AuthContext);
   const [data, setData] = useState([]);
+  const [dataID, setDataID] = useState([]);
   const db = app.firestore();
 
   useEffect(() => {
+    const myArr = [];
+    let apiariosRef = db.collection("MisApiarios");
+    apiariosRef
+      .where("documentoIdentidad", "==", currentUser.uid)
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((doc) => {
+          myArr.push(doc.id);
+        });
+        setDataID(myArr);
+      });
+
     db.collection("MisApiarios")
       .get()
       .then((snapshot) => {
@@ -27,8 +40,16 @@ function AppContent() {
         <ul>
           {data ? (
             data.map((item, index) => (
-              <li style={{ listStyle: "none", marginLeft: "-100px" }}>
-                <MyTambor data={item} id={index}></MyTambor>
+              <li
+                style={{ listStyle: "none", marginLeft: "-100px" }}
+                key={index}
+              >
+                <MyTambor
+                  data={item}
+                  id={index}
+                  doc={dataID[index]}
+                  changeData={setData}
+                ></MyTambor>
               </li>
             ))
           ) : (

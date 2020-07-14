@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Card } from "react-bootstrap";
+import { Spring, animated } from "react-spring/renderprops";
 import app from "../../../../firebase";
 import "./styles.css";
 import Apiario from "./Apiario";
@@ -21,10 +22,10 @@ function MyTambor(props) {
       >
         <div className="header-api">
           <p>#{props.id}</p>
-          {props.data.Empresa ? (
-            <p>Empresa: {props.data.Empresa}</p>
+          {props.data.nombreComercialDelProductoFourthScreen ? (
+            <p>Empresa: {props.data.nombreComercialDelProductoFourthScreen}</p>
           ) : (
-            <p>Empresa: ---------</p>
+            <p>Empresa: ----- </p>
           )}
           {props.data.responsableTecnicoSecondScreen ? (
             <p>Responsable: {props.data.responsableTecnicoSecondScreen}</p>
@@ -33,7 +34,15 @@ function MyTambor(props) {
           )}
         </div>
       </div>
-      {toggleData ? <Apiario data={props.data}></Apiario> : null}
+
+      {toggleData ? (
+        <Apiario
+          data={props.data}
+          isToggled={toggleData}
+          doc={props.doc}
+          setDoc={props.changeData}
+        ></Apiario>
+      ) : null}
     </div>
   );
 }
