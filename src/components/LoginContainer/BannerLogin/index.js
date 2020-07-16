@@ -4,7 +4,7 @@ function BannerLogin() {
   return (
     <div className="banner-login">
       <img
-        src={require("../../../img/bg-login-container.jpg")}
+        src={require("../../../img/logo-png-blanco.png")}
         alt="banner-login"
       ></img>
     </div>

@@ -5,6 +5,8 @@ import Logo from "./Logo";
 import app from "../../firebase";
 import firebase from "firebase";
 import { AuthContext } from "../../context/Auth";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Signup from "../Signup";
 
 const LoginContainer = ({ history }) => {
   const handleLogin = useCallback(
@@ -23,29 +25,11 @@ const LoginContainer = ({ history }) => {
     },
     [history]
   );
-  var provider = new firebase.auth.GoogleAuthProvider();
-  const handleLoginGoogle = useCallback(async (event) => {
+
+  const handleLoginGoogle = useCallback((event) => {
+    const provider = new firebase.auth.GoogleAuthProvider();
     event.preventDefault();
-    app
-      .auth()
-      .signInWithPopup(provider)
-      .then(function (result) {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = result.credential.accessToken;
-        // The signed-in user info.
-        var user = result.user;
-        // ...
-      })
-      .catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        // ...
-      });
+    app.auth().signInWithPopup(provider);
   });
 
   const { currentUser } = useContext(AuthContext);
@@ -62,7 +46,6 @@ const LoginContainer = ({ history }) => {
         <div class="form container">
           <form onSubmit={handleLogin}>
             <div class="text-input">
-              <label for="username">Email</label>
               <input
                 type="text"
                 name="email"
@@ -73,7 +56,6 @@ const LoginContainer = ({ history }) => {
             </div>
 
             <div class="text-input">
-              <label for="password">Password</label>
               <input
                 type="password"
                 name="password"
@@ -87,10 +69,17 @@ const LoginContainer = ({ history }) => {
               <button type="submit" id="submit" value="Submit">
                 Sign in
               </button>
+
+              <span className="register">
+                Do not have an account?
+                <Link to="/signup">
+                  <b>register.</b>
+                </Link>
+              </span>
             </div>
           </form>
-          <div className="col-md-6 offset-md-2 ">
-            <p style={{ textAlign: "center" }}>or</p>
+          <div className=" google-container ">
+            <p>or</p>
             <button onClick={handleLoginGoogle} className="btn-google">
               Sign in with google
             </button>

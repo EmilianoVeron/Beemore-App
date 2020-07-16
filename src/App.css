@@ -5,7 +5,7 @@
 .my-App {
   width: 100%;
   height: 100%;
-  background-image: url("./img/bg-login.jpg");
+  background-image: url("./img/bg-app.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
@@ -17,26 +17,28 @@
   position: relative;
   margin: 0 !important;
   padding: 0 !important;
-  width: 80%;
-  height: 65%;
   background-color: white;
-  border-radius: 30px;
-  border: 5px solid rgb(255, 209, 56);
+  border-radius: 43px;
+  padding: 0;
+  border: 5px solid #ebad55;
 }
 
 .banner-login {
   position: relative;
   margin: 0 !important;
   padding: 0 !important;
+  background-color: #ebad55;
   width: 100%;
   height: 40%;
-  border-bottom: 5px solid rgb(255, 209, 56);
+  border-radius: 35px 35px 0px 0px;
+  border-bottom: 5px solid #ebad55;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .banner-login img {
-  width: 100%;
-  height: 100%;
-  border-radius: 30px 30px 0px 0px;
+  width: 50%;
 }
 
 /* FORM LOGIN */
@@ -55,17 +57,20 @@
 .form form .text-input {
   overflow: hidden;
   margin-bottom: 0.875em;
+  border: 3px solid #ebad55;
+  border-radius: 10px;
+  padding: 5px;
 }
 .form form input[type="text"],
 .form form input[type="password"] {
   width: 100%;
   padding-left: 0;
   background: none;
-  color: rgb(255, 209, 56);
+  color: #ebad55;
   font-size: 1em;
   font-weight: 600;
   border: none;
-  border-bottom: 1px solid #999;
+
   /*Some sibling magic happens */
 }
 .form form input[type="text"]:focus + .separator,
@@ -76,7 +81,7 @@
 }
 .form form button[type="submit"] {
   color: white;
-  background: rgb(255, 209, 56);
+  background: #ebad55;
   padding: 0.5em 0.5em;
   font-size: 1.2em;
   border: none;
@@ -86,7 +91,7 @@
 .separator {
   height: 3px;
   width: 100%;
-  background: rgb(255, 209, 56);
+  background: #ebad55;
   display: block;
   -webkit-transform: scaleX(0) translateY(-2px);
   transform: scaleX(0) translateY(-2px);
@@ -97,6 +102,49 @@
   transition: all 0.2s linear;
 }
 
+.form-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.register {
+  position: relative;
+  top: 5px;
+  color: #ebad55;
+  display: inline-block;
+  width: 200px !important;
+  padding-left: 10px;
+
+  margin-left: 30px;
+}
+
+.register a {
+  color: #ebad55;
+  margin-left: 50px;
+}
+
+.google-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.google-container p {
+  width: 100%;
+  text-align: center;
+  padding-top: 15px;
+  color: #ebad55;
+}
+
+.btn-google {
+  border: none;
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  color: white;
+  background-color: #f24d4d;
+}
 /**
 * Form Reset - remove focus highlighting
 */

@@ -239,9 +239,9 @@ function Apiario(props) {
           data={content.length !== 0 ? data : data2}
           headers={headers}
           filename={`${props.data.responsableTecnicoSecondScreen}.csv`}
-          className="btn btn-success"
+          className="btn btn-success "
         >
-          Download me
+          Exportar CSV
         </CSVLink>
       </div>
     </Container>
