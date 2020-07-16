@@ -40,7 +40,7 @@ const LoginContainer = ({ history }) => {
 
   return (
     <div className="container-fluid my-App">
-      <div className="container col-md-4 offset-md-4 login-container ">
+      <div className="  login-container ">
         <BannerLogin></BannerLogin>
         <Logo></Logo>
         <div class="form container">
@@ -51,6 +51,7 @@ const LoginContainer = ({ history }) => {
                 name="email"
                 id="username"
                 placeholder="Email"
+                autoComplete="off"
               />
               <span class="separator"> </span>
             </div>
@@ -84,6 +85,7 @@ const LoginContainer = ({ history }) => {
               Sign in with google
             </button>
           </div>
+          <span className="copy">© 2020 Appi.AR - All rights reserved.</span>
         </div>
       </div>
     </div>
