@@ -71,12 +71,10 @@
 }
 
 .app-container {
-  height: 100%;
-
+  min-height: 100%;
+  width: 100%;
   background: url("../../../img/bg-app.jpg");
   background-position: center;
   background-size: cover;
-  background-blend-mode: screen;
-
-  background-color: rgba(0, 0, 0, 0.5);
+  background-repeat: no-repeat;
 }

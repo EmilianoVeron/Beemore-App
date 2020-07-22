@@ -20,7 +20,12 @@
 .header-api {
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+
   margin-top: 15px;
   font-weight: 600;
+  justify-content: space-around;
+}
+
+.header-api p {
+  width: 20%;
 }

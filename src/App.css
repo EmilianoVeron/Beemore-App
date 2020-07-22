@@ -3,19 +3,20 @@
   height: 100vh;
 }
 .my-App {
-  width: 100%;
-  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
   background-image: url("./img/bg-app.jpg");
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
+
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .login-container {
-  width: 50% !important;
-  height: fit-content;
+  max-width: 50% !important;
+  height: 50%;
   background-color: white;
   border-radius: 43px;
   border: 5px solid #ebad55;
@@ -36,20 +37,20 @@
 }
 
 .banner-login img {
-  width: 40%;
+  max-width: 200px;
   padding: 10px;
 }
 
 /* FORM LOGIN */
 
 .form {
-  width: 50%;
+  width: 70%;
   margin: 25px auto;
   text-align: left;
 }
 .form label {
   display: block;
-  text-align: left;
+  text-align: center;
   color: rgb(255, 196, 0);
   font-size: 1em;
 }
@@ -79,6 +80,7 @@
   opacity: 1;
 }
 .form form button[type="submit"] {
+  min-width: 80px !important;
   color: white;
   background: #ebad55;
   padding: 0.5em 0.5em;
@@ -107,19 +109,16 @@
   justify-content: center;
 }
 .register {
-  position: relative;
-  top: 5px;
+  min-width: 50% !important;
   color: #ebad55;
   display: inline-block;
   width: 200px !important;
+  text-align: center;
   padding-left: 10px;
-
-  margin-left: 30px;
 }
 
 .register a {
   color: #ebad55;
-  margin-left: 50px;
 }
 
 .google-container {
@@ -130,9 +129,8 @@
 }
 
 .google-container p {
-  width: 100%;
+  min-width: 100%;
   text-align: center;
-  padding-top: 15px;
   color: #ebad55;
 }
 
@@ -153,48 +151,206 @@
 }
 
 .copy {
-  margin-left: 21%;
   padding-top: 10px;
   width: 100%;
   color: #ebad55;
   text-align: center;
 }
 
-/**************/
-
-@media only screen and (min-width: 768px) {
-  .login-container {
-    width: 65% !important;
+@media only scren and (max-width: 3840px) {
+  .App {
+    width: 100vw;
+    height: 100vh;
+  }
+  .my-App {
+    width: 100%;
+    height: 100%;
+    background-image: url("./img/bg-app.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .login-container img {
-    width: 50%;
+  .login-container {
+    max-width: 50% !important;
+    height: 50%;
+    background-color: white;
+    border-radius: 43px;
+    border: 5px solid #ebad55;
+  }
+
+  .banner-login {
+    position: relative;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #ebad55;
+    width: 100%;
+    height: 30%;
+    border-radius: 35px 35px 0px 0px;
+    border-bottom: 5px solid #ebad55;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .banner-login img {
+    max-width: 200px;
+    padding: 10px;
+  }
+
+  /* FORM LOGIN */
+
+  .form {
+    margin: 25px auto;
+    text-align: left;
+  }
+  .form label {
+    display: inline-block;
+    text-align: center;
+    color: rgb(255, 196, 0);
+    font-size: 1em;
+  }
+  .form form .text-input {
+    overflow: hidden;
+    margin-bottom: 0.875em;
+    border: 3px solid #ebad55;
+    border-radius: 10px;
+    padding: 5px;
+  }
+  .form form input[type="text"],
+  .form form input[type="password"] {
+    max-width: 100% !important;
+    padding-left: 0;
+    background: none;
+    color: #ebad55;
+    font-size: 1em;
+    font-weight: 600;
+    border: none;
+
+    /*Some sibling magic happens */
+  }
+  .form form input[type="text"]:focus + .separator,
+  .form form input[type="password"]:focus + .separator {
+    -webkit-transform: scaleX(1) translateY(-2px);
+    transform: scaleX(1) translateY(-2px);
+    opacity: 1;
+  }
+  .form form button[type="submit"] {
+    color: white;
+    background: #ebad55;
+    padding: 0.5em 0.5em;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 10px;
+  }
+
+  .separator {
+    height: 3px;
+    width: 100%;
+    background: #ebad55;
+    display: block;
+    -webkit-transform: scaleX(0) translateY(-2px);
+    transform: scaleX(0) translateY(-2px);
+    -webkit-transform-origin: 50%;
+    transform-origin: 50%;
+    opacity: 0;
+    -webkit-transition: all 0.15s linear;
+    transition: all 0.2s linear;
   }
 
   .form-bottom {
-    width: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .register {
+    min-width: 100% !important;
+    color: #ebad55;
     display: inline-block;
+    width: 200px !important;
+    text-align: center;
   }
-  .form-bottom button {
-    width: 100%;
-  }
-  .form-bottom span {
-    width: 100%;
-    margin-left: 0;
-  }
-  .form-bottom span b {
-    width: 100%;
-    margin-left: 10px;
+
+  .register a {
+    color: #ebad55;
   }
 
   .google-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100% !important;
+    flex-wrap: wrap;
   }
+
+  .google-container p {
+    min-width: 100%;
+    text-align: center;
+    color: #ebad55;
+  }
+
+  .btn-google {
+    border: none;
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    color: white;
+    background-color: #f24d4d;
+  }
+  /**
+  * Form Reset - remove focus highlighting
+  */
+  * :focus {
+    outline-color: transparent;
+    outline-style: none;
+  }
+
   .copy {
+    margin-left: 21%;
+    padding-top: 10px;
+    width: 100%;
+    color: #ebad55;
+    text-align: center;
+  }
+}
+
+/**************/
+
+@media only screen and (max-width: 900px) {
+  .login-container {
+    max-width: 80% !important;
+    height: 50%;
+    background-color: white;
+    border-radius: 43px;
+    border: 5px solid #ebad55;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .login-container {
+    max-width: 90% !important;
+    height: 40%;
+    background-color: white;
+    border-radius: 43px;
+    border: 5px solid #ebad55;
+  }
+  .form {
+    min-width: 100%;
+  }
+  #submit {
+    width: 100%;
+  }
+  .form-bottom {
     display: inline-block;
-    margin: 0%;
+  }
+  .btn-google {
+    margin-top: -10px;
+  }
+
+  .copy {
+    margin-top: 30px;
+    min-width: 600px;
+    font-weight: 600;
   }
 }

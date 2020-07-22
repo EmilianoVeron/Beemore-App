@@ -235,14 +235,16 @@ function Apiario(props) {
             )}
           </ul>
         </div>
-        <CSVLink
-          data={content.length !== 0 ? data : data2}
-          headers={headers}
-          filename={`${props.data.responsableTecnicoSecondScreen}.csv`}
-          className="btn btn-success "
-        >
-          Exportar CSV
-        </CSVLink>
+        <div class="functions">
+          <CSVLink
+            data={content.length !== 0 ? data : data2}
+            headers={headers}
+            filename={`${props.data.responsableTecnicoSecondScreen}.csv`}
+            className="btn btn-success b-func "
+          >
+            Exportar CSV
+          </CSVLink>
+        </div>
       </div>
     </Container>
   );

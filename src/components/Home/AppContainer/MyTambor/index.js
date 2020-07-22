@@ -25,12 +25,12 @@ function MyTambor(props) {
           {props.data.nombreComercialDelProductoFourthScreen ? (
             <p>Empresa: {props.data.nombreComercialDelProductoFourthScreen}</p>
           ) : (
-            <p>Empresa: ----- </p>
+            <p>Empresa:</p>
           )}
           {props.data.responsableTecnicoSecondScreen ? (
             <p>Responsable: {props.data.responsableTecnicoSecondScreen}</p>
           ) : (
-            <p>Responsable: ---------</p>
+            <p>Responsable:</p>
           )}
         </div>
       </div>

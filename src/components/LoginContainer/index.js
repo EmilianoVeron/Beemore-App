@@ -39,8 +39,8 @@ const LoginContainer = ({ history }) => {
   }
 
   return (
-    <div className="container-fluid my-App">
-      <div className="  login-container ">
+    <div className="my-App">
+      <div className="login-container">
         <BannerLogin></BannerLogin>
         <Logo></Logo>
         <div class="form container">
@@ -84,8 +84,8 @@ const LoginContainer = ({ history }) => {
             <button onClick={handleLoginGoogle} className="btn-google">
               Sign in with google
             </button>
+            <span className="copy">© 2020 Appi.AR - All rights reserved.</span>
           </div>
-          <span className="copy">© 2020 Appi.AR - All rights reserved.</span>
         </div>
       </div>
     </div>

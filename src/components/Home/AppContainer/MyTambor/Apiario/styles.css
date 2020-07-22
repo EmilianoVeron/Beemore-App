@@ -27,3 +27,13 @@ thead tr {
   background-color: gainsboro;
   font-weight: 700;
 }
+
+.b-func {
+  margin: 0px 10px 10px 10px;
+}
+
+.functions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
