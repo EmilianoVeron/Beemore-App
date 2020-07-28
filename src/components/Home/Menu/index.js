@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../../context/Auth";
-import { Navbar } from "react-bootstrap";
+import { Navbar, ToggleButton } from "react-bootstrap";
 import app from "../../../firebase.js";
 import * as no_user from "../../../img/no-user.png";
 import "./styles.css";
@@ -18,19 +18,37 @@ import AppContent from "../AppContainer";
 import Tambores from "../AppContainer/Tambores";
 function Menu() {
   const { currentUser } = useContext(AuthContext);
+  const [showMenu, setShowMenu] = useState(false);
+
+  const togggleMenu = () => {
+    return setShowMenu(!showMenu);
+  };
 
   useEffect(() => {
     console.log(currentUser);
   }, []);
   return (
     <Router>
-      <div className="row app-container ">
-        <div className=" col-2 collapse  d-md-flex bg-light  ml-0  ">
-          <ul className="menu nav flex-column flex-nowrap overflow-hidden ">
+      <div className="row app-container  ">
+        <div className=" col-md-2">
+          <div className="menu-bt" onClick={togggleMenu}>
+            <i class="fa fa-bars "></i>
+          </div>
+          <ul
+            className={`${
+              showMenu
+                ? "menu nav flex-column  overflow-hidden  show-menu menu-full container "
+                : " menu nav hide-menu container"
+            } `}
+          >
             {currentUser.photoURL ? (
-              <img className="userImage" src={currentUser.photoURL}></img>
+              <div className="userImage-container ">
+                <img className="userImage" src={currentUser.photoURL}></img>
+              </div>
             ) : (
-              <img className="userImage" src={no_user}></img>
+              <div className="userImage-container">
+                <img className="userImage" src={no_user}></img>
+              </div>
             )}
             {currentUser.displayName ? (
               <p className="text-user"> Hola {currentUser.displayName}</p>
@@ -41,32 +59,33 @@ function Menu() {
 
             <li className="nav-item">
               <Link to="/">
-                <a className="nav-link text-truncate">
-                  <i className="fa fa-home"></i>{" "}
-                  <span className="d-none d-sm-inline">Mis Apiarios</span>
+                <a className="nav-link text-truncate " onClick={togggleMenu}>
+                  <span className=" d-sm-inline  ">Mis Apiarios</span>
                 </a>
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/tambores">
-                <a className="nav-link collapsed text-truncate">
-                  <i className="fa fa-table"></i>{" "}
-                  <span className="d-none d-sm-inline"> Mis Tambores</span>
+                <a
+                  className="nav-link collapsed text-truncate"
+                  onClick={togggleMenu}
+                >
+                  <span className=" d-sm-inline"> Mis Tambores</span>
                 </a>
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <a className="nav-link text-truncate" href="#">
-                <i className="fa fa-home"></i>{" "}
+                
                 <span className="d-none d-sm-inline">Estadísticas</span>
               </a>
             </li>
             <li className="nav-item">
               <a className="nav-link collapsed text-truncate" href="#submenu1">
-                <i className="fa fa-table"></i>{" "}
+                
                 <span className="d-none d-sm-inline">Asistente virtual</span>
               </a>
-            </li>
+            </li> */}
 
             <div className="separator-line"></div>
             <button
@@ -77,8 +96,9 @@ function Menu() {
             >
               SIGN OUT 🐝
             </button>
-
-            <img className="logo-png-menu" src={logo_png} alt="logo"></img>
+            <div className="logo-png-menu">
+              <img src={logo_png} alt="logo"></img>
+            </div>
           </ul>
         </div>
 

@@ -3,6 +3,7 @@ import { Container, Card } from "react-bootstrap";
 import MyTambor from "./MyTambor";
 import app from "../../../firebase";
 import { AuthContext } from "../../../context/Auth";
+import "./style.css";
 
 function AppContent() {
   const { currentUser } = useContext(AuthContext);
@@ -36,14 +37,11 @@ function AppContent() {
 
   return (
     <Container>
-      <div>
+      <div className="container list-item-apiario-container">
         <ul>
           {data ? (
             data.map((item, index) => (
-              <li
-                style={{ listStyle: "none", marginLeft: "-100px" }}
-                key={index}
-              >
+              <li className="list-item-apiario" key={index}>
                 <MyTambor
                   data={item}
                   id={index}

@@ -1,64 +1,82 @@
 .menu {
-  width: 100%;
+  height: 100% !important;
   background-color: #ebad55 !important;
-  justify-content: center !important;
-
+  display: inline-block;
   -webkit-box-shadow: 7px 0px 20px -9px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 7px 0px 20px -9px rgba(0, 0, 0, 0.75);
   box-shadow: 7px 0px 20px -9px rgba(0, 0, 0, 0.75);
 }
 
+.col-md-2 {
+  margin-left: -15px;
+}
+
+.row {
+  width: 100% !important;
+}
+
 .nav {
-  padding-left: 25px !important;
-  padding-right: 25px !important;
+  padding: 0px 25px 0px 25px;
+  overflow: hidden;
 }
 .menu a {
   color: #ffffff;
   width: 200px;
-}
-.menu a:hover {
-  color: #ebad55;
+  box-shadow: 0 0 1px #ccc;
+  background: #ebad55;
+  box-shadow: 0 0 1px #ccc;
+  -webkit-transition-duration: 0.2s;
+  -webkit-transition-timing-function: linear;
+  box-shadow: 0px 0 0 white inset;
 }
 
 .menu li {
+  margin-top: 15px;
   width: 100%;
-  margin-top: 10px;
-  display: flex !important;
 }
 .menu a:hover {
-  background: white;
   color: #ebad55;
   border-radius: 30px;
+  width: 100%;
+  text-decoration: none;
+  background: white;
+  box-shadow: 100% 0 0 white inset;
+}
+
+.userImage-container {
+  display: flex;
+  margin: 25px 0px 25px 0px;
 }
 
 .userImage {
   width: 100px;
   height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+
   border-radius: 50%;
   border: 0.15em solid white;
-  margin-left: 50px;
 }
-
 .text-user {
-  margin-top: 10px;
-  padding-left: 25px;
   color: white;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 1.2em;
+  text-align: center;
 }
 
 .separator-line {
-  margin-top: 15px;
   width: 100%;
-  height: 0.2em;
+  height: 0.3em;
   border-radius: 30px;
   background: white;
+  margin-top: 15px;
 }
 
 .btn-logout {
-  margin-top: 15px;
   width: 100%;
   height: 35px;
   border-radius: 30px;
+  margin-top: 15px;
   border: none;
   color: #ebad55;
   font-weight: 600;
@@ -67,14 +85,158 @@
 
 .logo-png-menu {
   width: 100%;
-  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.logo-png-menu img {
+  width: 98%;
 }
 
 .app-container {
-  min-height: 100%;
-  width: 100%;
+  position: fixed;
+  margin: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background: url("../../../img/bg-app.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  overflow: scroll;
+}
+
+.menu-bt {
+  display: none;
+}
+
+@media only screen and (max-width: 1340px) {
+  .menu-bt {
+    position: absolute !important;
+    z-index: 99999;
+    float: left;
+    padding: 25px;
+    color: black;
+    display: flex;
+  }
+  .menu-bt i {
+    font-size: 25px;
+  }
+
+  .hide-menu {
+    display: none;
+  }
+  .show-menu {
+    display: initial;
+    margin: 0px;
+  }
+
+  .menu-full {
+    position: fixed;
+    display: flex;
+    min-width: 100%;
+    z-index: 9999;
+    flex-wrap: wrap;
+    align-items: center;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    background: rgba(235, 173, 85, 0.8);
+  }
+
+  .separator-line {
+    width: 95%;
+  }
+  .nav-item {
+    width: 50%;
+    margin: 0 !important;
+  }
+  .menu li {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 15px 0px 0px 0px !important;
+  }
+
+  .logo-png-menu {
+    position: relative;
+    width: 215px;
+    height: 215px;
+  }
+
+  .btn-logout {
+    width: 95%;
+    height: 35px;
+    border-radius: 30px;
+    margin-top: 15px;
+
+    border: none;
+    color: #ebad55;
+    font-weight: 600;
+    background-color: white;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .menu-bt {
+    position: absolute;
+    z-index: 99999;
+    float: left;
+    padding: 25px;
+    color: black;
+    display: flex;
+  }
+  .menu-bt i {
+    font-size: 25px;
+  }
+
+  .hide-menu {
+    display: none;
+  }
+  .show-menu {
+    display: initial;
+  }
+
+  .menu-full {
+    position: fixed;
+    display: inline-flex;
+    z-index: 9999;
+    flex-wrap: wrap;
+    align-items: center;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(235, 173, 85, 0.8);
+  }
+
+  .separator-line {
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .menu li {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .nav-item {
+    height: 50px;
+    display: inline-block;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .logo-png-menu {
+    position: relative;
+    width: 215px;
+    height: 215px;
+  }
 }

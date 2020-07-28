@@ -3,6 +3,9 @@ import "./styles.css";
 import app from "../../../../../firebase";
 import { Container } from "react-bootstrap";
 import { CSVLink, CSVDownload } from "react-csv";
+import * as pizza from "../../../../../img/grafico-circular.png";
+import Stats from "./Stats";
+import firebase from "firebase";
 
 function Apiario(props) {
   const headers = [
@@ -54,12 +57,14 @@ function Apiario(props) {
       });
   }, []);
 
+  let unixDate = {};
+
   const data = [];
 
   content.map((item) =>
     data.push({
       distancia: item.distanciaThirdScreen,
-      fecha: item.startDateFirstScreen,
+      fecha: timeConverter(item.endDateFirstScreen),
       cantCol: item.cantidadDeColmenasThirdScreen,
       colMuertas: item.descartadasSecondScreen,
       categorizacion: {
@@ -69,7 +74,7 @@ function Apiario(props) {
       },
       alimentacion: {
         tipoAlimento: item.alimentacionFourthScreen,
-        cantCol: item.KgPorColFourthScreen,
+        cantCol: item.kgPorColFourthScreen,
       },
       cambioPanales: "null",
       tratamientoSanitario: {
@@ -96,10 +101,36 @@ function Apiario(props) {
     })
   );
 
+  function timeConverter(UNIX_timestamp) {
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = [
+      "Ene",
+      "Feb",
+      "Mar",
+      "Abr",
+      "May",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    var year = a.getFullYear() - 1969;
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + " " + month + " " + year;
+    return time;
+  }
+
   const data2 = [
     {
       distancia: props.data.distanciaThirdScreen,
-      fecha: props.data.startDateFirstScreen,
+      fecha: timeConverter(props.data.endDateFirstScreen),
       cantCol: props.data.cantidadDeColmenasThirdScreen,
       colMuertas: props.data.descartadasSecondScreen,
       categorizacion: {
@@ -109,7 +140,7 @@ function Apiario(props) {
       },
       alimentacion: {
         tipoAlimento: props.data.alimentacionFourthScreen,
-        cantCol: props.data.KgPorColFourthScreen,
+        cantCol: props.data.kgPorColFourthScreen,
       },
       cambioPanales: "null",
       tratamientoSanitario: {
@@ -137,116 +168,120 @@ function Apiario(props) {
   ];
 
   return (
-    <Container>
-      <div
-        className={
-          props.isToggled ? "apiario-container " : "apiario-container "
-        }
-      >
-        <div className="p-3">
-          <ul className="apiarios-news">
-            {content.length !== 0 ? (
-              content.map((item, index) => (
-                <li key={index}>
-                  <table>
-                    <thead>
-                      <tr>
-                        <td>Responsable Inscripto</td>
-                        <td>Distancia</td>
-                        <td>Cant. Colmenas</td>
-                        <td>Colmenas Muertas</td>
-                        <td>Tipo I</td>
-                        <td>Tipo II</td>
-                        <td>Tipo III</td>
-                        <td>Tipo de Alimento</td>
-                        <td>Cant. por col.</td>
-                        <td>Nombre Comercial</td>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>{item.responsableTecnicoSecondScreen}</td>
-                        <td>{item.distanciaThirdScreen}</td>
-                        <td>{item.cantidadDeColmenasThirdScreen}</td>
-
-                        <td>
-                          {item.colmenasMuertasThirdScreen === null
-                            ? 0
-                            : item.colmenasMuertasThirdScreen}
-                        </td>
-                        <td>{item.obtenerNumeroDeCounterThirdScreen}</td>
-                        <td>{item.obtenerNumeroDeCounterIIThirdScreen}</td>
-                        <td>{item.obtenerNumeroDeCounterIIIThirdScreen}</td>
-                        <td> {item.alimentacionFourthScreen}</td>
-                        <td>{item.kgPorColFourthScreen}</td>
-                        <td>
-                          {props.data.nombreComercialDelProductoFourthScreen}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </li>
-              ))
-            ) : (
-              <li>
-                <table>
-                  <thead>
-                    <tr>
-                      <td>Responsable Inscripto</td>
-                      <td>Distancia</td>
-                      <td>Cant. Colmenas</td>
-                      <td>Colmenas Muertas</td>
-                      <td>Tipo I</td>
-                      <td>Tipo II</td>
-                      <td>Tipo III</td>
-                      <td>Tipo de Alimento</td>
-                      <td>Cant. por col.</td>
-                      <td>Nombre Comercial</td>
-                    </tr>
-                  </thead>
-                  <tbody>
+    <div
+      className={props.isToggled ? "apiario-container " : "apiario-container "}
+    >
+      <div>
+        <div className="apiarios-news p-2">
+          <table>
+            <thead>
+              <tr>
+                <td>Responsable Inscripto</td>
+                <td>Distancia</td>
+                <td>Fecha</td>
+                <td>Cant. Colmenas</td>
+                <td>Colmenas Muertas</td>
+                <td>Tipo I</td>
+                <td>Tipo II</td>
+                <td>Tipo III</td>
+                <td>Tipo de Alimento</td>
+                <td>Cant. por col.</td>
+                <td>Nombre Comercial</td>
+                <td>Lote Producto</td>
+                <td>Cantidad</td>
+                <td>Tipo</td>
+                <td>Celdas Reales</td>
+                <td>Reinas Fec.</td>
+                <td>Reinas Vig.</td>
+                <td>Logrados</td>
+                <td>Destino</td>
+                <td>Ingreso</td>
+                <td>Cant. Alzas Colocadas</td>
+                <td>Cant. Alzas Retiradas</td>
+                <td>N° de Lote Extracción</td>
+                <td>Kg. Netos Totales</td>
+              </tr>
+            </thead>
+            <tbody>
+              {content.length != 0 ? (
+                data.map((item) => {
+                  return (
                     <tr>
                       <td>{props.data.responsableTecnicoSecondScreen}</td>
-                      <td>{props.data.distanciaThirdScreen}</td>
-                      <td>{props.data.cantidadDeColmenasThirdScreen}</td>
-                      <td>
-                        {" "}
-                        {props.data.colmenasMuertasThirdScreen === null
-                          ? 0
-                          : props.data.colmenasMuertasThirdScreen}
-                      </td>
-                      <td>{props.data.obtenerNumeroDeCounterThirdScreen}</td>
-                      <td>{props.data.obtenerNumeroDeCounterIIThirdScreen}</td>
-                      <td>{props.data.obtenerNumeroDeCounterIIIThirdScreen}</td>
-                      <td>
-                        {" "}
-                        {props.data.alimentacionFourthScreen === null
-                          ? "Sin Especificar"
-                          : props.data.alimentacionFourthScreen}
-                      </td>
-                      <td>{props.data.kgPorColFourthScreen}</td>
-                      <td>
-                        {props.data.nombreComercialDelProductoFourthScreen}
-                      </td>
+                      <td>{item.distancia}</td>
+                      <td>{item.fecha}</td>
+                      <td>{item.cantCol}</td>
+                      <td>{item.colMuertas}</td>
+                      <td>{item.categorizacion.tipo1}</td>
+                      <td>{item.categorizacion.tipo2}</td>
+                      <td>{item.categorizacion.tipo3}</td>
+                      <td>{item.alimentacion.tipoAlimento}</td>
+                      <td>{item.alimentacion.cantCol}</td>
+
+                      <td>{item.tratamientoSanitario.nombreComercial}</td>
+                      <td>{item.tratamientoSanitario.loteProducto}</td>
+                      <td>{item.recambio.Cantidad}</td>
+                      <td>{item.recambio.Tipo}</td>
+                      <td>{item.recambio.CeldasReales}</td>
+                      <td>{item.recambio.ReinasFec}</td>
+                      <td>{item.recambio.ReinasVig}</td>
+                      <td>{item.recambio.Logrados}</td>
+                      <td>{item.recambio.Destinos}</td>
+                      <td>{item.recambio.Ingreso}</td>
+                      <td>{item.cosecha.AlzasCol}</td>
+                      <td>{item.cosecha.AlzasRet}</td>
+                      <td>{item.cosecha.LoteExt}</td>
+                      <td>{item.cosecha.KgTotales}</td>
                     </tr>
-                  </tbody>
-                </table>
-              </li>
-            )}
-          </ul>
-        </div>
-        <div class="functions">
-          <CSVLink
-            data={content.length !== 0 ? data : data2}
-            headers={headers}
-            filename={`${props.data.responsableTecnicoSecondScreen}.csv`}
-            className="btn btn-success b-func "
-          >
-            Exportar CSV
-          </CSVLink>
+                  );
+                })
+              ) : (
+                <tr>
+                  <td>{props.data.responsableTecnicoSecondScreen}</td>
+                  <td>{data2[0].distancia}</td>
+                  <td>{data2[0].fecha}</td>
+                  <td>{data2[0].cantCol}</td>
+                  <td>{data2[0].colMuertas}</td>
+                  <td>{data2[0].categorizacion.tipo1}</td>
+                  <td>{data2[0].categorizacion.tipo2}</td>
+                  <td>{data2[0].categorizacion.tipo3}</td>
+                  <td>{data2[0].alimentacion.tipoAlimento}</td>
+                  <td>{data2[0].alimentacion.cantCol}</td>
+                  <td>{data2[0].tratamientoSanitario.nombreComercial}</td>
+                  <td>{data2[0].tratamientoSanitario.loteProducto}</td>
+                  <td>{data2[0].recambio.Cantidad}</td>
+                  <td>{data2[0].recambio.Tipo}</td>
+                  <td>{data2[0].recambio.CeldasReales}</td>
+                  <td>{data2[0].recambio.ReinasFec}</td>
+                  <td>{data2[0].recambio.ReinasVig}</td>
+                  <td>{data2[0].recambio.Logrados}</td>
+                  <td>{data2[0].recambio.Destinos}</td>
+                  <td>{data2[0].recambio.Ingreso}</td>
+                  <td>{data2[0].cosecha.AlzasCol}</td>
+                  <td>{data2[0].cosecha.AlzasRet}</td>
+                  <td>{data2[0].cosecha.LoteExt}</td>
+                  <td>{data2[0].cosecha.KgTotales}</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
-    </Container>
+      <div class="functions">
+        <CSVLink
+          data={content.length !== 0 ? data : data2}
+          headers={headers}
+          filename={`${props.data.responsableTecnicoSecondScreen}.csv`}
+          className="btn btn-success b-func "
+        >
+          Exportar CSV
+        </CSVLink>
+
+        <div>
+          <Stats data={content.length !== 0 ? data : data2}></Stats>
+        </div>
+      </div>
+    </div>
   );
 }
 

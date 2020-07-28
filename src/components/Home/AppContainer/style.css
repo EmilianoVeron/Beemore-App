@@ -1,0 +1,30 @@
+.list-item-apiario-container {
+  display: inline-block;
+  min-width: 100% !important;
+}
+.list-item-apiario {
+  min-width: 100% !important;
+  list-style: none;
+}
+
+@media only screen and (max-width: 1340px) {
+  .list-item-apiario-container {
+    position: absolute !important;
+    max-width: 70% !important;
+    z-index: 999;
+    left: -20px;
+    top: 40px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .list-item-apiario-container {
+    max-width: fit-content !important;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+  .list-item-apiario-container {
+    left: -15px;
+    top: 10px;
+    max-width: fit-content;
+  }
+}

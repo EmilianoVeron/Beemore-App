@@ -7,7 +7,8 @@
   justify-content: center;
   align-items: center;
   border-radius: 50px;
-
+  overflow: hidden;
+  margin-top: 25px;
   -webkit-box-shadow: 8px 6px 20px -9px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 8px 6px 20px -9px rgba(0, 0, 0, 0.75);
   box-shadow: 8px 6px 20px -9px rgba(0, 0, 0, 0.75);
@@ -19,13 +20,20 @@
 
 .header-api {
   width: 100%;
-  display: flex;
-
-  margin-top: 15px;
-  font-weight: 600;
-  justify-content: space-around;
+  text-align: center;
 }
 
 .header-api p {
-  width: 20%;
+  vertical-align: middle;
+  display: inline-block;
+  margin-top: 13px;
+  width: 30%;
+}
+
+@media only screen and (max-width: 600px) {
+  .header-api {
+    width: 100%;
+    margin: 0;
+    font-size: 0.7em;
+  }
 }
